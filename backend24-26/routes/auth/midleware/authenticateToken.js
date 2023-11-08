@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
-const secretKey = 'kunciRahasiaYangSama'; 
+const secretKey = 'kunciRahasiaYangSama';
+
 function authenticateToken(req, res, next) {
   const token = req.header('Authorization');
 
@@ -17,8 +18,8 @@ function authenticateToken(req, res, next) {
     if (err) {
       return res.status(403).json({ error: 'Token tidak valid' });
     }
-    const { userId, username } = decoded;
-    req.user = { userId, username };
+    const { id_register_pegawai, username } = decoded; // Mengganti userId dengan id_register_pegawai
+    req.user = { id_register_pegawai, username }; // Mengganti userId dengan id_register_pegawai
     next();
   });
 }
